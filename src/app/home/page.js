@@ -1,4 +1,5 @@
 import { auth } from "@/auth";
+import Image from "next/image";
 import { redirect } from "next/navigation";
 
 const page = async() => {
@@ -6,8 +7,15 @@ const page = async() => {
 
     if(!session?.user) redirect("/")
     return (
-        <div>
-            this is actual home.
+        <div className="flex flex-col gap-4 items-center m-4">
+            <h1 className="text-3xl"><span className="font-bold">welcome</span>, {session.user.name}</h1>
+            <Image
+                src={session.user.image}
+                alt={session.user.name}
+                width={125}
+                height={125}
+                className="rounded-full"
+            />
         </div>
     );
 };
